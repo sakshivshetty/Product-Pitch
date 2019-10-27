@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>forum</title>
+    </head>
+
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
+
+
+    <body>
+        <textarea cols="100" rows="10" id="forum_deets" placeholder="data"></textarea>
+        <input type="text" id="name" placeholder="name" id="name">
+        <button value="submit" onclick="submitForum()">Submit</button>
+           <script>
+                // Your web app's Firebase configuration
+                var firebaseConfig = {
+                    apiKey: "AIzaSyBEvIY0LvnTaqPIZP7EOTWhja7QQnnsq5Y",
+                    authDomain: "hashcode2019-e33a1.firebaseapp.com",
+                    databaseURL: "https://hashcode2019-e33a1.firebaseio.com",
+                    projectId: "hashcode2019-e33a1",
+                    storageBucket: "hashcode2019-e33a1.appspot.com",
+                    messagingSenderId: "75329561517",
+                    appId: "1:75329561517:web:7f52684ffc1d0b6c9c3724"
+                };
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                var mydatabase=firebase.database()
+
+                function submitForum()
+                {
+                    let text=document.getElementById("forum_deets").value;
+                    mydatabase.ref('forum_entries/'+name).set({
+                    data:text
+                });    
+                }
+        </script>
+
+    </body>
+</html>

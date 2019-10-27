@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Do-nate</title>
+        <link rel="stylesheet" type="text/css" href="design.css">
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
+        
+    </head>
+    <body>
+        <br /><br />
+        <h1 align = "center">DO-NATE</h1>
+        <br /><br />
+        <hr />
+        <br />
+        <h3 align = "center">LOG IN</h2>
+        <div align = "center">
+        <form action = "homepage.html">
+            <p>Email:</p>
+                        <input type = "email" class = "fill" name = "existing_email" id = "email" placeholder = "Enter email"><br />
+                        <br /><p>Password:</p>
+                        <input type = "password" class = "fill" name = "existing_password" id = "password" placeholder = "Enter password"><br /><br />
+                        <input type = "submit" class = "submit" value = "LOG IN"><br /><hr />
+
+                        <p>Not an existing user?</p>
+                        <a href = "sign.html" target="_blank">SIGN UP</a> 
+        </form>
+    </div>
+        <script>
+            var firebaseConfig = 
+            {
+                apiKey: "AIzaSyBEvIY0LvnTaqPIZP7EOTWhja7QQnnsq5Y",
+                authDomain: "hashcode2019-e33a1.firebaseapp.com",
+                databaseURL: "https://hashcode2019-e33a1.firebaseio.com",
+                projectId: "hashcode2019-e33a1",
+                storageBucket: "hashcode2019-e33a1.appspot.com",
+                messagingSenderId: "75329561517",
+                appId: "1:75329561517:web:7f52684ffc1d0b6c9c3724"
+            };
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            
+            firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+            });
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+
+    <head>
+        <title>Sign Up - DO-NATE</title>
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
+        <link rel="stylesheet" type="text/css" href="design.css">
+    </head>
+
+    <body>
+        <form action="homepage.html" id="sign-up_form">
+
+            <h1>SIGN UP</h1>
+
+            <p>Enter username:</p><br />
+            <input type="text" id = "username" name = "username" placeholder = "Username"><br />
+
+            <p>Enter your email ID:</p><br />
+            <input type="text" id="email" name = "email" placeholder="Email" ><br />
+
+            <p>Enter a password (minimum 8 characters)</p><br />
+            <input type="password" id="password" placeholder="Password" name = "password" minlength="8" ><br />
+
+            <p>Choose your preference:</p><br />
+            <input type = "radio" id = "donate" class = "r">I want to donate<br />
+            <input type = "radio" id = "receive" class = "r">I want to accept donations<br /><br />
+
+            <button value="submit" id = "submit" class = "submit" onclick="set_data()">Submit</button>
+
+        </form>
+        <script>
+            var firebaseConfig = 
+            {
+                apiKey: "AIzaSyBEvIY0LvnTaqPIZP7EOTWhja7QQnnsq5Y",
+                authDomain: "hashcode2019-e33a1.firebaseapp.com",
+                databaseURL: "https://hashcode2019-e33a1.firebaseio.com",
+                projectId: "hashcode2019-e33a1",
+                storageBucket: "hashcode2019-e33a1.appspot.com",
+                messagingSenderId: "75329561517",
+                appId: "1:75329561517:web:7f52684ffc1d0b6c9c3724"
+            };
+
+            firebase.initializeApp(firebaseConfig);      
+            var mydatabase=firebase.database()
+                          
+            function set_data()
+            {
+                let entry_email=document.getElementById("email").value; 
+                let cleanMail=entry_email.replace('.com', '_dot_com')
+                let entry_name=document.getElementById("username").value;
+                let entry_password=document.getElementById("password").value;
+
+                mydatabase.ref('users/'+cleanMail).set({
+                user_name:entry_name,
+                user_password:entry_password,
+                no_posts:0
+                });
+            }
+        </script>   
+    </body>   
+</html>

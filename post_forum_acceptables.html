@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="design.css">
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
+    </head>
+    <body>
+        <div id="new_post" style="text-align: center;" class = "d">
+            <form action="" id="createNewPost">
+                <header>
+                    <h2>Upload a new post</h2>
+                    <div>Upload a new post with the details of what you would like to receive from the donators</div>
+                </header>
+                <br>
+                <div>
+                    <label class="desc" id="tag" for="category">Pick a category: </label>
+                    <div>
+                        <select id="donation_category" name="category" tabindex="3">
+                            <option value="clothes" >Clothes and Footwear</option>
+                            <option value="book" >Books</option>
+                            <option value="furniture" >Furniture</option>
+                            <option value="utensils" >Utensils</option>
+                            <option value="others" >Others</option>
+                        </select>
+                    </div>
+                    <br>
+                    <br>
+                    <div class = "d">
+                        <label class="desc" id="item" for="Field1">Item Name: 
+                        </label>
+                        <div>
+                            <input id="itemName" name="Field1" type="text" value="" tabindex="1">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <label class="desc" id="description" for="Field2">Description of the item: </label>
+                        <div>
+                            <textarea id="itemDescription" name="Field2" spellcheck="true" rows="10" cols="100" tabindex="2" value="default">
+                            </textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <label class="desc" id="quantity" for="Field3">Quantity</label>
+                        <div>
+                            <input type="number" minlength="10" maxlength="10" id="itemQuantity" name="Field3">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <input id="uploadPost" name="uploadPost" type="submit" value="UPLOAD THIS POST" onclick="set_data()"></input>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script>
+        var firebaseConfig = 
+            {
+                apiKey: "AIzaSyBEvIY0LvnTaqPIZP7EOTWhja7QQnnsq5Y",
+                authDomain: "hashcode2019-e33a1.firebaseapp.com",
+                databaseURL: "https://hashcode2019-e33a1.firebaseio.com",
+                projectId: "hashcode2019-e33a1",
+                storageBucket: "hashcode2019-e33a1.appspot.com",
+                messagingSenderId: "75329561517",
+                appId: "1:75329561517:web:7f52684ffc1d0b6c9c3724"
+            };
+
+            firebase.initializeApp(firebaseConfig);      
+            var mydatabase=firebase.database();
+            let user_using=sessionStorage.getItem("user");
+            let cleaned_user_using=user_using.replace('.com', '_dot_com');
+              
+            function set_data()
+            {   
+                let entry_tag=document.getElementById("donation_category").value; 
+                //let cleanMail=entry_email.replace('.com', '__dot__com')
+                let entry_itemname=document.getElementById("itemName").value;
+                let entry_itemdesc=document.getElementById("itemDescription").value;
+                let entry_itemq=document.getElementById("itemQuantity").value;
+                mydatabase.ref('users/'+cleaned_user_using+'/posts/'+ entry_tag+'/').set({
+                user_itemname:entry_itemname,
+                user_itemdesc:entry_itemdesc,
+                user_itemq:entry_itemq
+                });
+            }
+        </script>
+    </body>
+</html>

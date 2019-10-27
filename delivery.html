@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Contact - DO-NATE</title>
+    </head>
+    <body>
+        <h3>Kindly enter your details as follows:</h3><br />
+        <form>
+            <p>Enter your address:</p><br />
+            <input type = "text" id = "address" name = "address" placeholder = "address" width = "100" height = "100"><br />
+            <p>Enter your contact number:</p>
+            <input type = "number" minlength="10" maxlength="10" id = "contact" name = "contact" placeholder = "contact"><br />
+            <button>DELIVER NOW</button>
+        </form>
+        <script>
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([51.5, -0.09]).addTo(map)
+        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+        .openPopup();
+        </script>
+    </body>
+</html>
